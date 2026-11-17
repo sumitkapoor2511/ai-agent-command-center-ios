@@ -9,7 +9,10 @@ A native **SwiftUI** mobile command center built to orchestrate an autonomous **
 * **Conversational Agent Control:** Stateful chat interface (`sessionId` memory) allowing users to create, query, update, and delete database tasks in plain English.
 * **Real-Time Dashboard Sync:** Automatically refreshes the PostgreSQL task queue and tab badge count whenever the AI agent executes backend tool calls.
 * **Modern Swift Architecture:** Built with SwiftUI, Swift Concurrency (`async/await`), `@MainActor` ViewModels, and zero third-party dependencies.
-
+## App Screenshots
+| Authentication | Live Task Dashboard | Agent Chat (CRUD) | Account & Gateway |
+| :---: | :---: | :---: | :---: |
+| <img src="docs/screenshots/login.png" width="210"> | <img src="docs/screenshots/dashboard.png" width="210"> | <img src="docs/screenshots/agent-chat.png" width="210"> | <img src="docs/screenshots/profile.png" width="210"> |
 ## Project Structure
 * `MyApp.swift` — App entry point, session validation, and auth state routing.
 * `AuthViewModel.swift` & `LoginView.swift` — FastAPI OAuth2 authentication and iOS Keychain storage.
