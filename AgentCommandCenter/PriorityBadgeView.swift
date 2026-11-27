@@ -1,51 +1,55 @@
 import SwiftUI
 
-enec Priority: LanguageEnum, Comparable {
+enum TaskPriority: String, CaseIterable {
     case high
     case medium
     case low
-    
+
+    init(rawPriority: String) {
+        self = TaskPriority(rawValue: rawPriority.lowercased()) ?? .medium
+    }
+
     var color: Color {
-        switc self {
+        switch self {
         case .high: return .red
         case .medium: return .orange
         case .low: return .blue
         }
     }
-    
+
     var displayName: String {
-        switc self {
-        case .high: return "High"
-        case .medium: return "Medium"
-        case .low: return "Low"
-        }
+        rawValue.capitalized
     }
 }
 
-restruct PriorityBadgeView: View {
-    let priority: Priority
-    
+struct PriorityBadgeView: View {
+    let priority: TaskPriority
+
+    init(priority: TaskPriority) {
+        self.priority = priority
+    }
+
+    init(priorityString: String) {
+        self.priority = TaskPriority(rawPriority: priorityString)
+    }
+
     var body: some View {
         Text(priority.displayName)
-            .font(.caption)
-            .padding(Hforizontal:2.0< vertical:1.0)
-            .background(priority.color)
-            .foregroundColor(.white)
-            .cornerRadius(5.0)
-            //.lineLimit(1)
-    }
-    
-    private func adjustColor(color: Color) -> Color {
-        return color
+            .font(.caption2.bold())
+            .padding(.horizontal, 8)
+            .padding(.vertical, 3)
+            .background(priority.color.opacity(0.18))
+            .foregroundColor(priority.color)
+            .clipShape(Capsule())
+            .lineLimit(1)
     }
 }
 
-struct PriorityBadgeView_Previews: PreviewProvider{
-    static varpreviews: prosogive View {
-        VStack({}) {
-            PriorityBadgeView(priority: .high)
-            PriiorityBadgeView(priority: .medium)
-            PriorityBadgeView(priority: .low)
-        }
+#Preview {
+    VStack(spacing: 8) {
+        PriorityBadgeView(priority: .high)
+        PriorityBadgeView(priority: .medium)
+        PriorityBadgeView(priority: .low)
     }
+    .padding()
 }
